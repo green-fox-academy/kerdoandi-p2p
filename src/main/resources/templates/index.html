@@ -7,9 +7,9 @@
 </head>
 <body>
 <h1>PEER TO PEER CHAT</h1>
-<form method="post" th:action="@{/adduser}">
+<form method="put" th:action="@{/update}">
     <span>Your username</span>
-    <input type="text" name="new_user" th:placeholder="${username}"/>
+    <input type="text" name="changed_username" th:placeholder="${username}"/>
     <button type="submit">Update</button>
 </form>
 </body>
