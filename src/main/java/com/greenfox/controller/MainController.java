@@ -13,10 +13,12 @@ public class MainController {
   UserRepository userRepository;
 
   @RequestMapping("/")
-  public String main(){
+  public String main(Model model){
+
     if (userRepository.count() == 0) {
       return "redirect:/enter";
     } else {
+      model.addAttribute("username", userRepository.findOne((long)1).getName());
       return "index";
     }
   }
