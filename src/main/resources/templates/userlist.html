@@ -16,5 +16,16 @@
         <td th:text="${user.name}"></td>
     </tr>
 </table>
+
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Text</th>
+    </tr>
+    <tr th:each="message : ${messages}">
+        <td th:text="${message.username}"></td>
+        <td th:text="${message.text}"></td>
+    </tr>
+</table>
 </body>
 </html>

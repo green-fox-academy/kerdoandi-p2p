@@ -1,6 +1,8 @@
 package com.greenfox.controller;
 
+import com.greenfox.model.Message;
 import com.greenfox.model.User;
+import com.greenfox.repository.MessageRepository;
 import com.greenfox.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,21 +17,28 @@ public class MainController {
 
   @Autowired
   UserRepository userRepository;
+  @Autowired
+  MessageRepository messageRepository;
 
-  @RequestMapping("/")
+  @RequestMapping(value = "/", method = RequestMethod.GET)
   public String main(Model model){
-
-    if (userRepository.count() == 0) {
+    if (userRepository.count() == 0)   {
       return "redirect:/enter";
     } else {
       model.addAttribute("username", userRepository.findOne((long)1).getName());
+      model.addAttribute("messages", messageRepository.findAll());
       return "index";
     }
   }
 
+  @RequestMapping(value = "/send", method = RequestMethod.POST)
+  public String sendMessge(@RequestParam(value = "message", required = true) String message) {
+    messageRepository.save(new Message(message));
+    return "redirect:/";
+  }
+
   @RequestMapping(value = "/update", method = RequestMethod.GET)
   public String changeUserName(Model model, @RequestParam(value = "changed_username") String newName){
-    System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     if (newName.isEmpty()) {
       error = "The username field is empty";
       return "redirect:/";
@@ -44,6 +53,7 @@ public class MainController {
   @RequestMapping(value = "/list", method = RequestMethod.GET)
   public String listUsers(Model model){
     model.addAttribute("users", userRepository.findAll());
+    model.addAttribute("messages", messageRepository.findAll());
     return "userlist";
   }
 }
