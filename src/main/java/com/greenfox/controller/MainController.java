@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainController {
+  String error = "";
+
   @Autowired
   UserRepository userRepository;
 
@@ -25,12 +27,18 @@ public class MainController {
     }
   }
 
-  @RequestMapping(value = "/update", method = RequestMethod.PUT)
+  @RequestMapping(value = "/update", method = RequestMethod.GET)
   public String changeUserName(Model model, @RequestParam(value = "changed_username") String newName){
-    User user = userRepository.findOne((long)1);
-    user.setName(newName);
-    userRepository.save(user);
-    return "redirect:/";
+    System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    if (newName.isEmpty()) {
+      error = "The username field is empty";
+      return "redirect:/";
+    } else {
+      User user = userRepository.findOne((long) 1);
+      user.setName(newName);
+      userRepository.save(user);
+      return "redirect:/";
+    }
   }
 
   @RequestMapping(value = "/list", method = RequestMethod.GET)
