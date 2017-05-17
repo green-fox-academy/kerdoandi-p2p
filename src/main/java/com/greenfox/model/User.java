@@ -2,13 +2,11 @@ package com.greenfox.model;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Component
+@Table(name = "tb.user")
 public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
