@@ -22,7 +22,8 @@ public class RegisterController {
   @GetMapping(value = "/enter")
   public String enter(Model model, HttpServletRequest request){
     Log log = new Log(request.getRequestURI(),request.getMethod(), request.getParameter(null));
-    System.out.println(log);
+    log.print();
+
     model.addAttribute("users", userRepository);
     model.addAttribute("error", error);
     if (userRepository.count() > 0) {
@@ -35,7 +36,8 @@ public class RegisterController {
   @PostMapping(value = "/enter/add")
   public String addNewUser(@RequestParam(value = "new_user", required = true) String name, HttpServletRequest request){
     Log log = new Log(request.getRequestURI(),request.getMethod(), request.getParameter("new_user"));
-    System.out.println(log);
+    log.print();
+
     if (name.isEmpty()) {
       error = "The username field is empty";
       return "redirect:/enter";

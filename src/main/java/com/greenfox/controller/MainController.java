@@ -25,7 +25,7 @@ public class MainController {
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String main(Model model, HttpServletRequest request){
       Log log = new Log(request.getRequestURI(),request.getMethod(), request.getParameter(null));
-      System.out.println(log);
+      log.print();
 
     if (userRepository.count() == 0)   {
       return "redirect:/enter";
@@ -39,7 +39,8 @@ public class MainController {
   @RequestMapping(value = "/update", method = RequestMethod.GET)
   public String changeUserName(Model model, @RequestParam(value = "changed_username") String newName, HttpServletRequest request){
     Log log = new Log(request.getRequestURI(),request.getMethod(), request.getParameter("changed_username"));
-    System.out.println(log);
+    log.print();
+
     if (newName.isEmpty()) {
       error = "The username field is empty";
       return "redirect:/";
@@ -54,7 +55,8 @@ public class MainController {
   @RequestMapping(value = "/list", method = RequestMethod.GET)
   public String listUsers(Model model, HttpServletRequest request){
     Log log = new Log(request.getRequestURI(),request.getMethod(), request.getParameter("message"));
-    System.out.println(log);
+    log.print();
+
     model.addAttribute("users", userRepository.findAll());
     model.addAttribute("messages", messageRepository.findAll());
     return "userlist";

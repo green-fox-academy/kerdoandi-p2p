@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class MessageController {
+public class Message_SendController {
   @Autowired
   MessageRepository messageRepository;
   @Autowired
@@ -22,8 +22,10 @@ public class MessageController {
   @RequestMapping(value = "/send", method = RequestMethod.POST)
   public String sendMessge(@RequestParam(value = "message", required = true) String message, HttpServletRequest request) {
     Log log = new Log(request.getRequestURI(),request.getMethod(), request.getParameter("message"));
-    System.out.println(log);
-    messageRepository.save(new Message(userRepository.findOne((long) 1).getName(), message));
+    log.print();
+
+    Message newMessage = new Message(userRepository.findOne((long)1).getName(), message);
+    messageRepository.save(newMessage);
     return "redirect:/";
   }
 }

@@ -8,14 +8,13 @@ import java.time.LocalDateTime;
 import java.util.Random;
 
 @Entity
-@Table(name = "tb.message")
+@Table(name = "Messages")
 public class Message {
+  int id;
   String username;
   String text;
   @Id
   Timestamp timestamp;
-  int id;
-
 
   public Message() {
   }

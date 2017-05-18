@@ -1,9 +1,11 @@
 package com.greenfox;
 
 public class ErrorMessage {
+  String status;
   String error;
 
   public ErrorMessage(String error) {
+    status = "error";
     this.error = error;
   }
 

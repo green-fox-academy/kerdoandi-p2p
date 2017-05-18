@@ -63,9 +63,11 @@ public class Log {
     this.params = params;
   }
 
-
-  @Override
-  public String toString() {
-    return getCurrentDate() + " " + getLogLevel() + " Request " + getEndpoint() + " " + getMethodType() + " text=" + getParams();
+  public void print() {
+    if (!this.params.equals("")) {
+      System.out.println(getCurrentDate() + " " + getLogLevel() + " Request " + getEndpoint() + " " + getMethodType() + " text=" + getParams());
+    } else {
+      System.out.println(getCurrentDate() + " " + getLogLevel() + " Request " + getEndpoint() + " " + getMethodType());
+    }
   }
 }
