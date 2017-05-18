@@ -1,4 +1,4 @@
-package com.greenfox;
+package com.greenfox.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

@@ -1,6 +1,6 @@
 package com.greenfox.controller;
 
-import com.greenfox.Log;
+import com.greenfox.model.Log;
 import com.greenfox.model.Message;
 import com.greenfox.repository.MessageRepository;
 import com.greenfox.repository.UserRepository;
