@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
 </head>
 <body>
-<h1>PEER TO PEER CHAT</h1>
+<h1>PEER TO PEER CHAT PROGRAM</h1>
 <form method="get" th:action="@{/update}">
     <span>Your username</span>
     <input type="text" name="changed_username" th:placeholder="${username}"/>
@@ -14,7 +14,11 @@
 </form>
 
 <ul>
-    <li th:each="message : ${messages}" th:text="${message.text}"></li>
+    <li th:each="message : ${messages}">
+        <p><span th:text="${message.username}"></span></p>
+        <p><span th:text="${message.text}"></span></p>
+    </li>
+
 </ul>
 
 <form method="post" th:action="@{/send}">
