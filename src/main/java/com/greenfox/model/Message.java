@@ -17,9 +17,9 @@ public class Message {
   public Message() {
   }
 
-  public Message(String text) {
+  public Message(String username, String text) {
+    this.username = username;
     this.text = text;
-    username = "App";
     Random random = new Random();
     id = random.nextInt(8999999) + 1000000;
   }

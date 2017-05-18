@@ -1,6 +1,6 @@
 package com.greenfox.controller;
 
-import com.greenfox.model.Message;
+import com.greenfox.Log;
 import com.greenfox.model.User;
 import com.greenfox.repository.MessageRepository;
 import com.greenfox.repository.UserRepository;
@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class MainController {
@@ -21,7 +23,10 @@ public class MainController {
   MessageRepository messageRepository;
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
-  public String main(Model model){
+  public String main(Model model, HttpServletRequest request){
+      Log log = new Log(request.getRequestURI(),request.getMethod(), request.getParameter(null));
+      System.out.println(log);
+
     if (userRepository.count() == 0)   {
       return "redirect:/enter";
     } else {
@@ -31,14 +36,10 @@ public class MainController {
     }
   }
 
-  @RequestMapping(value = "/send", method = RequestMethod.POST)
-  public String sendMessge(@RequestParam(value = "message", required = true) String message) {
-    messageRepository.save(new Message(message));
-    return "redirect:/";
-  }
-
   @RequestMapping(value = "/update", method = RequestMethod.GET)
-  public String changeUserName(Model model, @RequestParam(value = "changed_username") String newName){
+  public String changeUserName(Model model, @RequestParam(value = "changed_username") String newName, HttpServletRequest request){
+    Log log = new Log(request.getRequestURI(),request.getMethod(), request.getParameter("changed_username"));
+    System.out.println(log);
     if (newName.isEmpty()) {
       error = "The username field is empty";
       return "redirect:/";
@@ -51,7 +52,9 @@ public class MainController {
   }
 
   @RequestMapping(value = "/list", method = RequestMethod.GET)
-  public String listUsers(Model model){
+  public String listUsers(Model model, HttpServletRequest request){
+    Log log = new Log(request.getRequestURI(),request.getMethod(), request.getParameter("message"));
+    System.out.println(log);
     model.addAttribute("users", userRepository.findAll());
     model.addAttribute("messages", messageRepository.findAll());
     return "userlist";

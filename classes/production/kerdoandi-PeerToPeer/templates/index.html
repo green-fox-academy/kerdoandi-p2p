@@ -7,10 +7,19 @@
 </head>
 <body>
 <h1>PEER TO PEER CHAT</h1>
-<form method="post" th:action="@{/adduser}">
+<form method="get" th:action="@{/update}">
     <span>Your username</span>
-    <input type="text" name="new_user" placeholder="Username"/>
-    <button type="submit">Submit</button>
+    <input type="text" name="changed_username" th:placeholder="${username}"/>
+    <button type="submit">Update</button>
+</form>
+
+<ul>
+    <li th:each="message : ${messages}" th:text="${message.text}"></li>
+</ul>
+
+<form method="post" th:action="@{/send}">
+    <input type="text" name="message"/>
+    <button type="submit">Send</button>
 </form>
 </body>
 </html>
