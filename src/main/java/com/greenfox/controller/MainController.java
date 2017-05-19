@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class MainController {
-  String error = "";
 
   @Autowired
   UserRepository userRepository;
@@ -42,7 +41,6 @@ public class MainController {
     log.print();
 
     if (newName.isEmpty()) {
-      error = "The username field is empty";
       return "redirect:/";
     } else {
       User user = userRepository.findOne((long) 1);

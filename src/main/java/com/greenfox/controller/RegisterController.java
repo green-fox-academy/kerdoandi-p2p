@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class RegisterController {
-  String error = "";
+  private String error = "";
 
   @Autowired
   UserRepository userRepository;

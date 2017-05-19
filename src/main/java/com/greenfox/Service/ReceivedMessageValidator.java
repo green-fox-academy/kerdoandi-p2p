@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 @Service
 public class ReceivedMessageValidator {
-  String missingParams;
+  private String missingParams;
 
   public ReceivedMessageValidator() {
     missingParams = "";
@@ -25,13 +25,13 @@ public class ReceivedMessageValidator {
     if (username == null || username.isEmpty()) {
       missingParams += "message.username, ";
     }
-    if (text.equals(null) || text.isEmpty()) {
+    if (text == null || text.isEmpty()) {
       missingParams += "message.text, ";
     }
     if (timestamp == null) {
       missingParams += "message.timestamp, ";
     }
-    if (userid.equals(null) || userid.isEmpty()) {
+    if (userid == null || userid.isEmpty()) {
       missingParams += "client.id.";
     }
   }

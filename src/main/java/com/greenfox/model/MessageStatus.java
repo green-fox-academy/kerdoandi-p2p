@@ -2,7 +2,7 @@ package com.greenfox.model;
 
 
 public class MessageStatus {
-  String status;
+  private String status;
 
   public MessageStatus() {
     status = "ok";

@@ -1,5 +1,6 @@
 package com.greenfox.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -10,8 +11,11 @@ import java.util.Random;
 @Entity
 @Table(name = "Messages")
 public class Message {
+  @Column(nullable = false)
   int id;
+  @Column(nullable = false)
   String username;
+  @Column(nullable = false)
   String text;
   @Id
   Timestamp timestamp;

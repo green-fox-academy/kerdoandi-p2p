@@ -6,6 +6,7 @@ import com.greenfox.model.MessageStatus;
 import com.greenfox.model.MessageWithClientId;
 import com.greenfox.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,22 +14,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Message__ReceiveController {
   @Autowired
-  MessageRepository messageRepository;
+  private MessageRepository messageRepository;
   @Autowired
-  ReceivedMessageValidator receivedMessageValidator;
+  private ReceivedMessageValidator receivedMessageValidator;
 
   @RequestMapping("/api/message/receive")
+  @CrossOrigin("*")
   public Object receiveMessage(@RequestBody MessageWithClientId messageWithClientId) {
     receivedMessageValidator.setMissingParams(messageWithClientId);
     String missingParams = receivedMessageValidator.getMissingParams();
 
     if (!missingParams.isEmpty()) {
-      ErrorMessage errorMessage = new ErrorMessage("Missing field(s): " + missingParams);
-      return errorMessage;
+      return new ErrorMessage("Missing field(s): " + missingParams);
     } else {
       messageRepository.save(messageWithClientId.getMessage());
-      MessageStatus messageStatus = new MessageStatus();
-      return messageStatus;
+      return new MessageStatus();
     }
   }
 }
