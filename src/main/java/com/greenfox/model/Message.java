@@ -38,4 +38,8 @@ public class Message {
   public int getId() {
     return id;
   }
+
+  public Timestamp getTimestamp() {
+    return timestamp;
+  }
 }
