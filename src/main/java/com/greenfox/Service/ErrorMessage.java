@@ -1,4 +1,4 @@
-package com.greenfox;
+package com.greenfox.Service;
 
 public class ErrorMessage {
   String status;

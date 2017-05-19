@@ -4,16 +4,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Log {
-  String currentDate;
-  String logLevel;
-  String endpoint;
-  String methodType;
-  String params;
-
+  private String currentDate;
+  private String logLevel;
+  private String endpoint;
+  private String methodType;
+  private String params;
 
   public Log(String endpoint, String methodType, String params) {
     currentDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:MM:SS.SSS"));
-    this.logLevel = System.getenv("CHAT_APP_LOGLEVEL");
+    logLevel = System.getenv("CHAT_APP_LOGLEVEL");
     this.endpoint = endpoint;
     this.methodType = methodType;
     if (params != null) {
@@ -23,23 +22,23 @@ public class Log {
     }
   }
 
-  public String getCurrentDate() {
+  private String getCurrentDate() {
     return currentDate;
   }
 
-  public String getLogLevel() {
+  private String getLogLevel() {
     return logLevel;
   }
 
-  public String getEndpoint() {
+  private String getEndpoint() {
     return endpoint;
   }
 
-  public String getMethodType() {
+  private String getMethodType() {
     return methodType;
   }
 
-  public String getParams() {
+  private String getParams() {
     return params;
   }
 
@@ -65,9 +64,11 @@ public class Log {
 
   public void print() {
     if (!this.params.equals("")) {
-      System.out.println(getCurrentDate() + " " + getLogLevel() + " Request " + getEndpoint() + " " + getMethodType() + " text=" + getParams());
+      System.out.println(getCurrentDate() + " " + getLogLevel() + " Request " + getEndpoint() +
+              " " + getMethodType() + " text=" + getParams());
     } else {
-      System.out.println(getCurrentDate() + " " + getLogLevel() + " Request " + getEndpoint() + " " + getMethodType());
+      System.out.println(getCurrentDate() + " " + getLogLevel() + " Request " + getEndpoint() +
+              " " + getMethodType());
     }
   }
 }

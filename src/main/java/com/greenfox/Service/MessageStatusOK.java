@@ -1,10 +1,10 @@
-package com.greenfox.model;
+package com.greenfox.Service;
 
 
-public class MessageStatus {
+public class MessageStatusOK {
   private String status;
 
-  public MessageStatus() {
+  public MessageStatusOK() {
     status = "ok";
   }
 
