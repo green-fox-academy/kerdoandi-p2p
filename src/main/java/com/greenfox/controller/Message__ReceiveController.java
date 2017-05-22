@@ -1,8 +1,9 @@
 package com.greenfox.controller;
 
 import com.greenfox.Service.ErrorMessage;
-import com.greenfox.Service.ReceivedMessageValidator;
 import com.greenfox.Service.MessageStatusOK;
+import com.greenfox.Service.ReceivedMessageValidator;
+import com.greenfox.Service.SendMessageService;
 import com.greenfox.model.Log;
 import com.greenfox.model.MessageWithClientId;
 import com.greenfox.repository.MessageRepository;
@@ -20,6 +21,8 @@ public class Message__ReceiveController {
   private MessageRepository messageRepository;
   @Autowired
   private ReceivedMessageValidator receivedMessageValidator;
+  @Autowired
+  SendMessageService sendMessageService;
 
   @RequestMapping("/api/message/receive")
   @CrossOrigin("*")
@@ -33,7 +36,10 @@ public class Message__ReceiveController {
     if (!missingParams.isEmpty()) {
       return new ErrorMessage("Missing field(s): " + missingParams);
     } else {
-      messageRepository.save(messageWithClientId.getMessage());
+      if (!messageWithClientId.getClient().equals(System.getenv("CHAT_APP_UNIQUE_ID"))) {
+        sendMessageService.sendMessage(messageWithClientId);
+        messageRepository.save(messageWithClientId.getMessage());
+      }
       return new MessageStatusOK();
     }
   }
