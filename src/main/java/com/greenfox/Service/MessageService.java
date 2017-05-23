@@ -3,7 +3,6 @@ package com.greenfox.Service;
 import com.greenfox.model.Client;
 import com.greenfox.model.Message;
 import com.greenfox.model.MessageWithClientId;
-import com.greenfox.repository.ClientRepo;
 import com.greenfox.repository.MessageRepository;
 import com.greenfox.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,8 @@ public class MessageService {
   MessageRepository messageRepository;
   @Autowired
   UserRepository userRepository;
-  @Autowired
-  ClientRepo clientRepo;
+//  @Autowired
+//  ClientRepo clientRepo;
 
   final String URL =  System.getenv("CHAT_APP_PEER_ADDRESSS") + "/api/message/receive";
   RestTemplate restTemplate = new RestTemplate();
