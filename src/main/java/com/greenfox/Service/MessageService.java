@@ -20,14 +20,17 @@ public class MessageService {
 
   public Message createMessageObjectFromText(String messageText) {
     String username = userRepository.findOne((long) 1).getName();
+    System.out.println("messageet csinal");
     return new Message(username, messageText);
   }
 
   public void saveAndSandMessage(String messageText) {
     Message message = createMessageObjectFromText(messageText);
     messageRepository.save(message);
+    System.out.println("messaget lement");
     MessageWithClientId mwci = new MessageWithClientId(message, new Client());
     restTemplate.postForLocation(URL, mwci);
+    System.out.println("messaget tovabbit");
   }
 
   public boolean checkIfMessageWasSentByUser(MessageWithClientId mwci) {
