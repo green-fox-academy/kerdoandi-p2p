@@ -1,12 +1,11 @@
 package com.greenfox.controller;
 
 import com.greenfox.Service.ErrorMessage;
+import com.greenfox.Service.MessageService;
 import com.greenfox.Service.MessageStatusOK;
 import com.greenfox.Service.ReceivedMessageValidator;
-import com.greenfox.Service.MessageService;
 import com.greenfox.model.Log;
 import com.greenfox.model.MessageWithClientId;
-import com.greenfox.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,8 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class Message__ReceiveController {
-  @Autowired
-  private MessageRepository messageRepository;
   @Autowired
   private ReceivedMessageValidator receivedMessageValidator;
   @Autowired
