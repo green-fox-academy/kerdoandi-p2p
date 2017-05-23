@@ -1,18 +1,19 @@
 package com.greenfox.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "ClientIds")
+//@Entity
+//@Table(name = "ClientIds")
 public class Client {
-   String id;
+//  @Id
+  String id;
 
   public Client() {
-    this.id = System.getenv("CHAT_APP_UNIQUE_ID");
   }
 
   public String getId() {
     return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
   }
 }
