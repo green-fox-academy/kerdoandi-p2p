@@ -15,8 +15,7 @@ public class MessageService {
   MessageRepository messageRepository;
   @Autowired
   UserRepository userRepository;
-//  @Autowired
-//  ClientRepo clientRepo;
+//ts
 
   final String URL =  System.getenv("CHAT_APP_PEER_ADDRESSS") + "/api/message/receive";
   RestTemplate restTemplate = new RestTemplate();
