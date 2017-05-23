@@ -34,7 +34,7 @@ public class Message__ReceiveController {
       return new ErrorMessage("Missing field(s): " + missingParams);
     } else {
       if (messageService.checkIfMessageWasSentByUser(messageWithClientId)) {
-        messageService.saveAndSandMessageWithClientId(messageWithClientId);
+        messageService.saveAndSendMessageWithClientId(messageWithClientId);
       }
       return new MessageStatusOK();
     }

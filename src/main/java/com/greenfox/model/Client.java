@@ -1,5 +1,10 @@
 package com.greenfox.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ClientIds")
 public class Client {
    String id;
 

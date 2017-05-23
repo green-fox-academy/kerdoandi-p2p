@@ -3,6 +3,7 @@ package com.greenfox.Service;
 import com.greenfox.model.Client;
 import com.greenfox.model.Message;
 import com.greenfox.model.MessageWithClientId;
+import com.greenfox.repository.ClientRepo;
 import com.greenfox.repository.MessageRepository;
 import com.greenfox.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class MessageService {
   MessageRepository messageRepository;
   @Autowired
   UserRepository userRepository;
+  @Autowired
+  ClientRepo clientRepo;
+
   final String URL =  System.getenv("CHAT_APP_PEER_ADDRESSS") + "/api/message/receive";
   RestTemplate restTemplate = new RestTemplate();
 
@@ -24,18 +28,11 @@ public class MessageService {
     return new Message(username, messageText);
   }
 
-  public String saveAndSandMessage(String messageText) {
+  public String saveAndSendMessage(String messageText) {
     Message message = createMessageObjectFromText(messageText);
     messageRepository.save(message);
-    System.out.println("messaget lement");
     MessageWithClientId mwci = new MessageWithClientId(message, new Client());
-    System.out.println("messagewithclien");
-//    try {
-      restTemplate.postForLocation(URL, mwci);
-//    } catch (Exception e) {
-//      return "redirect:/list";
-//    }
-    System.out.println("messaget tovabbit");
+    restTemplate.postForLocation(URL, mwci);
     return messageText;
   }
 
@@ -46,8 +43,9 @@ public class MessageService {
     return true;
   }
 
-  public void saveAndSandMessageWithClientId(MessageWithClientId mwci) {
+  public void saveAndSendMessageWithClientId(MessageWithClientId mwci) {
     messageRepository.save(mwci.getMessage());
+    clientRepo.save(mwci.getClient());
     restTemplate.postForLocation(URL, mwci);
   }
 }

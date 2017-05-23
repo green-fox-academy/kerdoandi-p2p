@@ -21,7 +21,7 @@ public class Message_SendController {
     Log log = new Log(request.getRequestURI(),request.getMethod(), request.getParameter("message"));
     log.print();
 
-    messageService.saveAndSandMessage(messageText);
+    messageService.saveAndSendMessage(messageText);
     return "redirect:/";
   }
 }
