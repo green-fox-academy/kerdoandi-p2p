@@ -3,7 +3,6 @@ package com.greenfox.Service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-
 public class Log {
   private String currentDate;
   private String logLevel;

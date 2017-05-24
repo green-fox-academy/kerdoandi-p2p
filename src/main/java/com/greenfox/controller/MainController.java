@@ -20,8 +20,6 @@ public class MainController {
   UserRepository userRepository;
   @Autowired
   MessageRepository messageRepository;
-//  @Autowired
-//  Log log;
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String main(Model model, HttpServletRequest request){

@@ -1,6 +1,5 @@
 package com.greenfox.Service;
 
-
 public class MessageStatusOK {
   private String status;
 

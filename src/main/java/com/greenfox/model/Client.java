@@ -1,13 +1,9 @@
 package com.greenfox.model;
 
-//@Entity
-//@Table(name = "ClientIds")
 public class Client {
-//  @Id
-  String id;
+  private String id;
 
-  public Client() {
-  }
+  public Client() {}
 
   public String getId() {
     return id;

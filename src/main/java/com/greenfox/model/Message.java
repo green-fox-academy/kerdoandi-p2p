@@ -12,16 +12,15 @@ import java.util.Random;
 @Table(name = "Messages")
 public class Message {
   @Column(nullable = false)
-  int id;
+  private int id;
   @Column(nullable = false)
-  String username;
+  private String username;
   @Column(nullable = false)
-  String text;
+  private String text;
   @Id
-  Timestamp timestamp;
+  private Timestamp timestamp;
 
-  public Message() {
-  }
+  public Message() {}
 
   public Message(String username, String text) {
     this.username = username;

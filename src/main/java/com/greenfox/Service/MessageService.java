@@ -39,7 +39,6 @@ public class MessageService {
 
   public void saveAndSendMessageWithClientId(MessageWithClientId mwci) {
     messageRepository.save(mwci.getMessage());
-//    clientRepo.save(mwci.getClient());
     restTemplate.postForObject(URL, mwci, MessageStatusOK.class);
   }
 }
