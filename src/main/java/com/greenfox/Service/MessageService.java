@@ -37,10 +37,7 @@ public class MessageService {
   }
 
   public boolean checkIfMessageWasSentByUser(MessageWithClientId mwci) {
-    if(!mwci.getClient().equals(System.getenv("CHAT_APP_UNIQUE_ID"))) {
-      return true;
-    }
-    return true;
+    return !mwci.getClient().equals(System.getenv("CHAT_APP_UNIQUE_ID"));
   }
 
   public void saveAndSendMessageWithClientId(MessageWithClientId mwci) {
