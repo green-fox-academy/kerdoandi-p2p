@@ -37,12 +37,12 @@ public class MessageService {
   }
 
   public boolean checkIfMessageWasSentByUser(MessageWithClientId mwci) {
-    return !mwci.getClient().equals(System.getenv("CHAT_APP_UNIQUE_ID"));
+    return mwci.getClient().equals(System.getenv("CHAT_APP_UNIQUE_ID"));
   }
 
   public void saveAndSendMessageWithClientId(MessageWithClientId mwci) {
     messageRepository.save(mwci.getMessage());
 //    clientRepo.save(mwci.getClient());
-    restTemplate.postForLocation(URL, mwci, MessageWithClientId.class);
+    restTemplate.postForObject(URL, mwci, MessageStatusOK.class);
   }
 }
