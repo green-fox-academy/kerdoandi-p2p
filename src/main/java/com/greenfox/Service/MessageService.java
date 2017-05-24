@@ -32,7 +32,7 @@ public class MessageService {
     Client client = new Client();
     client.setId(System.getenv("CHAT_APP_UNIQUE_ID"));
     MessageWithClientId mwci = new MessageWithClientId(message, client);
-    restTemplate.postForLocation(URL, mwci);
+    restTemplate.postForObject(URL, mwci, MessageStatusOK.class);
     return messageText;
   }
 
@@ -46,6 +46,6 @@ public class MessageService {
   public void saveAndSendMessageWithClientId(MessageWithClientId mwci) {
     messageRepository.save(mwci.getMessage());
 //    clientRepo.save(mwci.getClient());
-    restTemplate.postForLocation(URL, mwci);
+    restTemplate.postForLocation(URL, mwci, MessageWithClientId.class);
   }
 }
