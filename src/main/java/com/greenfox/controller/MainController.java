@@ -1,6 +1,6 @@
 package com.greenfox.controller;
 
-import com.greenfox.model.Log;
+import com.greenfox.Service.Log;
 import com.greenfox.model.User;
 import com.greenfox.repository.MessageRepository;
 import com.greenfox.repository.UserRepository;
@@ -20,11 +20,13 @@ public class MainController {
   UserRepository userRepository;
   @Autowired
   MessageRepository messageRepository;
+//  @Autowired
+//  Log log;
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String main(Model model, HttpServletRequest request){
-      Log log = new Log(request.getRequestURI(),request.getMethod(), request.getParameter(null));
-      log.print();
+    Log log = new Log(request.getRequestURI(),request.getMethod(), request.getParameter(null));
+    log.print();
 
     if (userRepository.count() == 0)   {
       return "redirect:/enter";
@@ -40,14 +42,12 @@ public class MainController {
     Log log = new Log(request.getRequestURI(),request.getMethod(), request.getParameter("changed_username"));
     log.print();
 
-    if (newName.isEmpty()) {
-      return "redirect:/";
-    } else {
+    if (!newName.isEmpty()) {
       User user = userRepository.findOne((long) 1);
       user.setName(newName);
       userRepository.save(user);
-      return "redirect:/";
     }
+    return "redirect:/";
   }
 
   @RequestMapping(value = "/list", method = RequestMethod.GET)

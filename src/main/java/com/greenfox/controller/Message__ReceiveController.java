@@ -4,7 +4,7 @@ import com.greenfox.Service.ErrorMessage;
 import com.greenfox.Service.MessageService;
 import com.greenfox.Service.MessageStatusOK;
 import com.greenfox.Service.ReceivedMessageValidator;
-import com.greenfox.model.Log;
+import com.greenfox.Service.Log;
 import com.greenfox.model.MessageWithClientId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

@@ -1,6 +1,6 @@
 package com.greenfox.controller;
 
-import com.greenfox.model.Log;
+import com.greenfox.Service.Log;
 import com.greenfox.model.User;
 import com.greenfox.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
