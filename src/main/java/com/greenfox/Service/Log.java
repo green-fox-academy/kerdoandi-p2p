@@ -1,11 +1,9 @@
 package com.greenfox.Service;
 
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-@Service
+
 public class Log {
   private String currentDate;
   private String logLevel;
