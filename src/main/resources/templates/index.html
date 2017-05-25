@@ -18,19 +18,19 @@
        </form>
     </div>
 </div>
-
-<div class="panel panel-default">
-    <div class="panel-heading">MESSAGES</div>
-    <div class="panel-body">
-        <ul>
-            <li th:each="message : ${messages}">
-                <p><span th:text="${message.username}"></span></p>
-                <p><span th:text="${message.text}"></span></p>
-            </li>
-        </ul>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">MESSAGES</div>
+        <div class="panel-body">
+            <ul>
+                <li th:each="message : ${messages}">
+                    <p><span th:text="${message.username}"></span></p>
+                    <p><span th:text="${message.text}"></span></p>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
-
 <form method="post" th:action="@{/send}">
     <input type="text" name="message"/>
     <button type="submit">Send</button>
