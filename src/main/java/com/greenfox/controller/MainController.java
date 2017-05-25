@@ -30,7 +30,7 @@ public class MainController {
       return "redirect:/enter";
     } else {
       model.addAttribute("username", userRepository.findOne((long)1).getName());
-      model.addAttribute("messages", messageRepository.findAllByOrderByTimestamp());
+      model.addAttribute("messages", messageRepository.findAllByOrderByTimestampDesc());
       return "index";
     }
   }
