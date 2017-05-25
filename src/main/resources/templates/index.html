@@ -31,10 +31,12 @@
         </div>
     </div>
 </div>
-<form method="post" th:action="@{/send}">
-    <input type="text" name="message"/>
-    <button type="submit">Send</button>
-</form>
+<div class="container">
+    <form method="post" th:action="@{/send}">
+        <input type="text" name="message"/>
+        <button type="submit">Send</button>
+    </form>
+</div>
 <script>
     setTimeout(function(){
         window.location.reload(1);
