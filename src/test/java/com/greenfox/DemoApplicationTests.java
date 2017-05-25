@@ -43,16 +43,7 @@ public class DemoApplicationTests {
     mockMvc.perform(get("/enter"))
             .andExpect(status().isOk());
   }
-//
-//  @Test
-//  public void testSendMessage() throws Exception {
-//    MessageWithClientId mwci = new MessageWithClientId(new Message("Andi", "alma"), new Client());
-//
-//    mockMvc.perform(post("/api/message/receive")
-//            .andExpect(status().isOk())
-//            .andExpect(jsonPath("$.ready").value(true))
-//            .andExpect(jsonPath("$.shipstatus").value("full"));
-//  }
+
 
 
 }
