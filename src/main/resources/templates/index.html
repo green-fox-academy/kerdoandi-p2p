@@ -7,13 +7,17 @@
 </head>
 <body>
 <h1>PEER TO PEER CHAT PROGRAM</h1>
-<form class="form-inline" method="get" th:action="@{/update}">
-    <div class="form-group">
-        <label>Your username</label>
-        <input type="text" name="changed_username" th:placeholder="${username}"/>
-        <button class="btn btn-primary" type="submit">Update</button>
+<div class="container">
+   <div class="jumbotron">
+       <form class="form-inline" method="get" th:action="@{/update}">
+           <div class="form-group">
+               <label>Your username</label>
+               <input type="text" name="changed_username" th:placeholder="${username}"/>
+               <button class="btn btn-primary" type="submit">Update</button>
+           </div>
+       </form>
     </div>
-</form>
+</div>
 
 <div class="panel panel-default">
     <div class="panel-heading">MESSAGES</div>
