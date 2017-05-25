@@ -8,18 +8,23 @@
 <body>
 <h1>PEER TO PEER CHAT PROGRAM</h1>
 <form method="get" th:action="@{/update}">
-    <span class="bg-primary">Your username</span>
+    <p>Your username</p>
     <input type="text" name="changed_username" th:placeholder="${username}"/>
     <button type="submit">Update</button>
 </form>
 
-<ul>
-    <li th:each="message : ${messages}">
-        <p><span th:text="${message.username}"></span></p>
-        <p><span th:text="${message.text}"></span></p>
-    </li>
+<div class="panel panel-default">
+    <div class="panel-heading">MESSAGES</div>
+    <div class="panel-body">
+        <ul>
+            <li th:each="message : ${messages}">
+                <p><span th:text="${message.username}"></span></p>
+                <p><span th:text="${message.text}"></span></p>
+            </li>
+        </ul>
+    </div>
+</div>
 
-</ul>
 <form method="post" th:action="@{/send}">
     <input type="text" name="message"/>
     <button type="submit">Send</button>
